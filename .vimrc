@@ -55,7 +55,17 @@ map fk <C-B>
  
 noremap H ^
 noremap L $
+
+" Quick exit out of insert mode
 inoremap jj <Esc>
+
+" Automatically close braces, parentheses, brackets, quotation marks
+inoremap { {}<Esc>ha
+inoremap ( ()<Esc>ha
+inoremap [ []<Esc>ha
+inoremap " ""<Esc>ha
+inoremap ' ''<Esc>ha
+inoremap ` ``<Esc>ha
 
 "Plugin setup
 call plug#begin()
