@@ -4,10 +4,14 @@ syntax on
 
 " Personalized features
 set nocompatible
+set completeopt=menuone,longest
+set shortmess+=c
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 set smarttab
+set expandtab
+set relativenumber
 set backspace=2
 set hlsearch
 set number
@@ -22,8 +26,8 @@ set matchpairs+=<:>
 set statusline+=%F
 set whichwrap+=<,>,h,l
 
-" Set vim tab auto complete
-set wildmode=list:longest
+" Set vim tab autocompletion in visual mode
+set wildmode=list,longest,full
 set wildmenu
 
 " Back to the position last time opened
@@ -59,6 +63,9 @@ noremap L $
 " Map escape
 inoremap jj <Esc>
 
+" Use tab for autocompletion when popup menu is visible
+inoremap <expr> <tab> pumvisible() ? "<CR>" : "<tab>"
+
 " Close braces, parentheses, brackets, quotation marks automatically
 inoremap { {}<Esc>ha
 inoremap ( ()<Esc>ha
@@ -71,14 +78,22 @@ inoremap ` ``<Esc>ha
 call plug#begin()
 
 " List of plugins
+
+" Color Themes
 Plug 'embark-theme/vim', { 'as': 'embark', 'branch': 'main' }
 Plug 'cesardeazevedo/Fx-ColorScheme'
+
+" Insert mode autocompletion
+Plug 'vim-scripts/AutoComplPop'
 
 call plug#end()
 
 " Color Display
 colorscheme fx
 set background=dark
+hi Search ctermbg=LightYellow
+hi Search ctermfg=red
+hi Visual ctermbg=White
 hi Search ctermbg=LightYellow
 hi Search ctermfg=red
 hi Visual ctermbg=White
