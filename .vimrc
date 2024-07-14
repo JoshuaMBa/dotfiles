@@ -4,7 +4,6 @@ syntax on
 
 " Personalized features
 set nocompatible
-set background=dark
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
@@ -23,11 +22,11 @@ set matchpairs+=<:>
 set statusline+=%F
 set whichwrap+=<,>,h,l
 
-" set vim tab auto complete
+" Set vim tab auto complete
 set wildmode=list:longest
 set wildmenu
 
-" back to the position last time opened
+" Back to the position last time opened
 if has("autocmd")
   autocmd BufRead *.txt set tw=78
   autocmd BufReadPost *
@@ -52,14 +51,15 @@ autocmd FileType make set noexpandtab
 " Map forward/backward
 map fj <C-F>
 map fk <C-B>
- 
+
+" Map move to begin line and end line
 noremap H ^
 noremap L $
 
-" Quick exit out of insert mode
+" Map escape
 inoremap jj <Esc>
 
-" Automatically close braces, parentheses, brackets, quotation marks
+" Close braces, parentheses, brackets, quotation marks automatically
 inoremap { {}<Esc>ha
 inoremap ( ()<Esc>ha
 inoremap [ []<Esc>ha
@@ -76,4 +76,9 @@ Plug 'cesardeazevedo/Fx-ColorScheme'
 
 call plug#end()
 
+" Color Display
 colorscheme fx
+set background=dark
+hi Search ctermbg=LightYellow
+hi Search ctermfg=red
+hi Visual ctermbg=White
