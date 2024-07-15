@@ -94,6 +94,3 @@ set background=dark
 hi Search ctermbg=LightYellow
 hi Search ctermfg=red
 hi Visual ctermbg=White
-hi Search ctermbg=LightYellow
-hi Search ctermfg=red
-hi Visual ctermbg=White
