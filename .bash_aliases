@@ -3,7 +3,8 @@ alias cdo="cd ~-"
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
-alias .....="../../../.."
+alias .....="cd ../../../.."
+alias ......="cd ../../../../.."
 
 # Terminal Display
 alias l="ls -F"
