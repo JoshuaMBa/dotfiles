@@ -4,7 +4,7 @@ syntax on
 
 " Personalized features
 set nocompatible
-set so=7
+set scrolloff=8
 set ignorecase
 set smartcase
 set completeopt=menuone,longest
@@ -82,7 +82,7 @@ call plug#begin()
 
 " List of plugins
 
-" Color Themes
+" Color Theme
 Plug 'cesardeazevedo/Fx-ColorScheme'
 
 " Insert mode autocompletion
@@ -96,3 +96,8 @@ set background=dark
 hi Search ctermbg=LightYellow
 hi Search ctermfg=red
 hi Visual ctermbg=White
+
+" Format C/C++ files with clang-format on exit
+if executable('clang-format')
+    autocmd VimLeave *.cpp,*.c,*.h :!clang-format -i %
+endif
