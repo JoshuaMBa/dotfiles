@@ -4,6 +4,9 @@ syntax on
 
 " Personalized features
 set nocompatible
+set so=7
+set ignorecase
+set smartcase
 set completeopt=menuone,longest
 set shortmess+=c
 set tabstop=4
@@ -12,7 +15,7 @@ set shiftwidth=4
 set smarttab
 set expandtab
 set relativenumber
-set backspace=2
+set backspace=eol,start,indent
 set hlsearch
 set number
 set ruler
@@ -74,13 +77,12 @@ inoremap " ""<Esc>ha
 inoremap ' ''<Esc>ha
 inoremap ` ``<Esc>ha
 
-"Plugin setup
+" Plugin setup
 call plug#begin()
 
 " List of plugins
 
 " Color Themes
-Plug 'embark-theme/vim', { 'as': 'embark', 'branch': 'main' }
 Plug 'cesardeazevedo/Fx-ColorScheme'
 
 " Insert mode autocompletion
