@@ -1,5 +1,8 @@
 # Moving directories
 alias cdo="cd ~-"
+alias croot="cd ~"
+alias pud="pushd"
+alias pod="popd"
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
@@ -17,14 +20,19 @@ alias cl="clear"
 # File analysis
 alias diff="diff --color=auto"
 alias grep="grep -n --color=auto"
-alias grepr="grep -R"
+alias grepr="grep -n -R --color=auto"
 
 # File creation and deletion
 alias vi="vim"
 alias vs="code"
+alias vs="code"
 alias t="touch"
 alias rmr="rm -r"
 alias rmf="rm -f"
+
+# Makefile
+alias m="make"
+alias mm="make"
 
 # Permissions
 alias please="sudo"
