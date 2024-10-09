@@ -101,3 +101,8 @@ hi Visual ctermbg=White
 if executable('clang-format')
     autocmd VimLeave *.cpp,*.c,*.h :!clang-format -i %
 endif
+
+" Autoformat go files
+if executable('gofmt')
+    autocmd VimLeave *.go :!gofmt -w %
+endif
