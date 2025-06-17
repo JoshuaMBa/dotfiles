@@ -1,7 +1,31 @@
 [alias]
-    lla = log --oneline --graph --all 
-    st = status
+    a = add
+    aa = add --all
+    cb = "!git rev-parse --abbrev-ref HEAD"
+    c = commit
+    ca = commit --amend
+    can = commit --amend --no-edit
     cm = commit -m
-    aa = add --all 
-    co = checkout 
-    sw = switch 
+    cmf = commit --fixup
+    cms = commit --squash
+    co = checkout
+    diff = diff --color-words
+    lga = log --oneline --graph --decorate --all
+    lg = log --oneline --graph --decorate
+    ra = rebase --abort
+    rc = rebase --continue
+    ri = rebase -i
+    rewind = !sh -c 'git reset --hard HEAD~$1' -
+    rv = revert
+    st = status -b
+    sw = switch
+    trash = !git reset HEAD . && git checkout -- . && echo 'Undid all uncommitted changes'
+    who = shortlog -sn --no-merges
+    whoami = !git config --get user.name && git config --get user.email
+    which = branch --contains
+
+[commit]
+    verbose = true
+
+[push]
+    default = current
