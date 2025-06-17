@@ -1,31 +1,56 @@
+[commit]
+    verbose = true
+
+[fetch]
+    prune = true 
+
+[pull]
+    rebase = true 
+
+[push]
+    default = current
+
+[rebase]
+    autostash = true
+
+[rerere]
+    enabled = true
+
+[core]
+    excludesfile = ~/.config/git/ignore
+
 [alias]
     a = add
-    aa = add --all
-    cb = "!git rev-parse --abbrev-ref HEAD"
+    aa = add --all 
+    b = branch 
+    ba = branch -a
+    br = branch -r
     c = commit
     ca = commit --amend
-    can = commit --amend --no-edit
+    can = commit --amend --no-edit    
+    cb = !"!git rev-parse --abbrev-ref HEAD"     
+    changed = diff ORIG_HEAD..
     cm = commit -m
     cmf = commit --fixup
     cms = commit --squash
     co = checkout
+    cp = cherry-pick
     diff = diff --color-words
-    lga = log --oneline --graph --decorate --all
-    lg = log --oneline --graph --decorate
+    lg = log --oneline --graph --decorate    
+    lga = log --oneline --graph --decorate --all 
+    lgme = !git log --author=$(git config user.email)
     ra = rebase --abort
     rc = rebase --continue
-    ri = rebase -i
-    rewind = !sh -c 'git reset --hard HEAD~$1' -
+    rewind = !sh -c 'git reset --hard HEAD~$1' -    
+    ri = rebase -i 
+    ru = remote update
     rv = revert
+    set-upstream = branch -u
+    sh = show HEAD
     st = status -b
     sw = switch
     trash = !git reset HEAD . && git checkout -- . && echo 'Undid all uncommitted changes'
+    unstage = reset HEAD .
+    which = branch --contains    
     who = shortlog -sn --no-merges
     whoami = !git config --get user.name && git config --get user.email
-    which = branch --contains
-
-[commit]
-    verbose = true
-
-[push]
-    default = current
