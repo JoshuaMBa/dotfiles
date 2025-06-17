@@ -1,0 +1,7 @@
+[alias]
+    lla = log --oneline --graph --all 
+    st = status
+    cm = commit -m
+    aa = add --all 
+    co = checkout 
+    sw = switch 
