@@ -1,4 +1,4 @@
-# Moving directories
+# Directory navigation
 alias cdo="cd ~-"
 alias croot="cd ~"
 alias pud="pushd"
@@ -40,3 +40,6 @@ alias please="sudo"
 # which command alternative
 alias type="type -P"
 alias typea="type -a" 
+
+# Network configuration
+myip='curl -s ipinfo.io/ip'
