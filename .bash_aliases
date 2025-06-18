@@ -16,6 +16,7 @@ alias la="ls -aF"
 alias lla="ls -laF"
 alias lal="ls -laF"
 alias cl="clear" 
+alias jb="cat ~/.jb_name_ascii_art"
 
 # File analysis
 alias diff="diff --color=auto"
