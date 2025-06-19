@@ -34,7 +34,7 @@ set signcolumn=yes                  " Always show the sign column (useful for Gi
 set wildmode=list,longest,full
 set wildmenu
 
-" Back to the position last time opened
+" Files will open at the position at which they were closed
 if has("autocmd")
   autocmd BufRead *.txt set tw=78
   autocmd BufReadPost *
@@ -42,9 +42,6 @@ if has("autocmd")
   \   exe "normal g'\"" |
   \ endif
 endif
-
-" Enable file type detection
-filetype on
 
 " C/C++ programming helpers
 augroup csrc
@@ -56,18 +53,18 @@ augroup END
 " In Makefiles, don't expand tabs to spaces, since we need the actual tabs
 autocmd FileType make set noexpandtab
 
-" Map forward/backward
+" Scroll down with fj and scroll down with fk
 map fj <C-F>
 map fk <C-B>
 
-" Map move to begin line and end line
+" Move to end of line with L and start of line with H
 noremap H ^
 noremap L $
 
-" Map escape
+" Escape with jj
 inoremap jj <Esc>
 
-" Use <tab> to trigger completion and navigate to the next complete item
+" Use <tab> to trigger completion in autocomplete menu and navigate to the next complete item
 function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~ '\s'
@@ -106,6 +103,10 @@ Plug 'vim-airline/vim-airline-themes'
 " Directory panel
 Plug 'preservim/nerdtree'
 
+" Fuzzy finder
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+
 " Color Theme
 Plug 'cesardeazevedo/Fx-ColorScheme'
 
@@ -122,6 +123,14 @@ hi Visual ctermbg=White
 " Toggle directory panel with ctrl + a
 inoremap <C-A> <Esc>:NERDTreeToggle<cr>
 nnoremap <C-A> <Esc>:NERDTreeToggle<cr>
+
+" Open fuzzy finder for files 
+inoremap <C-Q> :Files<CR>
+nnoremap <C-Q> :Files<CR>
+
+" Open fuzzy finder for buffers 
+inoremap <C-R> :Buffers<CR>
+nnoremap <C-R> :Buffers<CR>
 
 " Format C/C++ files with clang-format on exit
 if executable('clang-format')     
