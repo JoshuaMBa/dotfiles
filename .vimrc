@@ -68,14 +68,14 @@ noremap L $
 inoremap jj <Esc>
 
 " Use <tab> to trigger completion and navigate to the next complete item
-function! CheckBackspace() abort
+function! s:check_back_space() abort
   let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
+  return !col || getline('.')[col - 1]  =~ '\s'
 endfunction
 
 inoremap <silent><expr> <Tab>
-      \ coc#pum#visible() ? coc#pum#next(1) :
-      \ CheckBackspace() ? "\<Tab>" :
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<Tab>" :
       \ coc#refresh() 
 
 " Splits configuration 
@@ -91,7 +91,9 @@ call plug#begin()
 
 " List of plugins
 
-" Insert mode autocompletion
+" Insert mode autocompletion (`CocInstall coc-clangd` for C/C++ LSP, add
+" { suggest.noselect: true } to coc config with `CocConfig` to fix autcomplete
+" menu selection of first result)
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Auto pairing of brackets, braces, parentheses and quotations
@@ -117,7 +119,7 @@ hi Search ctermbg=LightYellow
 hi Search ctermfg=red
 hi Visual ctermbg=White
 
-" Toggle directory panel with c-s
+" Toggle directory panel with ctrl + s
 inoremap <C-S> <Esc>:NERDTreeToggle<cr>
 nnoremap <C-S> <Esc>:NERDTreeToggle<cr>
 
