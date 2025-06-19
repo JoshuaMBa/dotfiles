@@ -120,8 +120,8 @@ hi Search ctermfg=red
 hi Visual ctermbg=White
 
 " Toggle directory panel with ctrl + s
-inoremap <C-S> <Esc>:NERDTreeToggle<cr>
-nnoremap <C-S> <Esc>:NERDTreeToggle<cr>
+inoremap <C-A> <Esc>:NERDTreeToggle<cr>
+nnoremap <C-A> <Esc>:NERDTreeToggle<cr>
 
 " Format C/C++ files with clang-format on exit
 if executable('clang-format')     
