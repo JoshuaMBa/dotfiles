@@ -67,16 +67,16 @@ noremap L $
 " Map escape
 inoremap jj <Esc>
 
-" Use tab for autocompletion when popup menu is visible
-inoremap <expr> <tab> pumvisible() ? "<CR>" : "<tab>"
+" Use <tab> to trigger completion and navigate to the next complete item
+function! CheckBackspace() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
 
-" Close braces, parentheses, brackets, quotation marks automatically
-inoremap { {}<Esc>ha
-inoremap ( ()<Esc>ha
-inoremap [ []<Esc>ha
-inoremap " ""<Esc>ha
-inoremap ' ''<Esc>ha
-inoremap ` ``<Esc>ha 
+inoremap <silent><expr> <Tab>
+      \ coc#pum#visible() ? coc#pum#next(1) :
+      \ CheckBackspace() ? "\<Tab>" :
+      \ coc#refresh() 
 
 " Splits configuration 
 set splitbelow 
@@ -92,19 +92,34 @@ call plug#begin()
 " List of plugins
 
 " Insert mode autocompletion
-Plug 'vim-scripts/AutoComplPop'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+" Auto pairing of brackets, braces, parentheses and quotations
+Plug 'jiangmiao/auto-pairs'
+
+" Status bar customization
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+
+" Directory panel
+Plug 'preservim/nerdtree'
 
 " Color Theme
 Plug 'cesardeazevedo/Fx-ColorScheme'
 
 call plug#end()
 
-" Color Display
 colorscheme fx
+
+" Color Display
 set background=dark
 hi Search ctermbg=LightYellow
 hi Search ctermfg=red
 hi Visual ctermbg=White
+
+" Toggle directory panel with c-s
+inoremap <C-S> <Esc>:NERDTreeToggle<cr>
+nnoremap <C-S> <Esc>:NERDTreeToggle<cr>
 
 " Format C/C++ files with clang-format on exit
 if executable('clang-format')     
