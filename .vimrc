@@ -119,7 +119,7 @@ hi Search ctermbg=LightYellow
 hi Search ctermfg=red
 hi Visual ctermbg=White
 
-" Toggle directory panel with ctrl + s
+" Toggle directory panel with ctrl + a
 inoremap <C-A> <Esc>:NERDTreeToggle<cr>
 nnoremap <C-A> <Esc>:NERDTreeToggle<cr>
 
