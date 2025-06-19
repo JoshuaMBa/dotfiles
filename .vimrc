@@ -68,7 +68,7 @@ noremap L $
 inoremap jj <Esc>
 
 " Use tab for autocompletion when popup menu is visible
-" inoremap <expr> <tab> pumvisible() ? "<CR>" : "<tab>"
+inoremap <expr> <tab> pumvisible() ? "<CR>" : "<tab>"
 
 " Close braces, parentheses, brackets, quotation marks automatically
 inoremap { {}<Esc>ha
