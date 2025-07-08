@@ -64,15 +64,15 @@ noremap L $
 " Escape with jj
 inoremap jj <Esc>
 
-" Use <tab> to trigger completion in autocomplete menu and navigate to the next complete item
-function! s:check_back_space() abort
+" use <tab> to trigger completion and navigate to the next complete item
+function! CheckBackspace() abort
   let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~ '\s'
+  return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
 inoremap <silent><expr> <Tab>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<Tab>" :
+      \ coc#pum#visible() ? coc#pum#next(1) :
+      \ CheckBackspace() ? "\<Tab>" :
       \ coc#refresh() 
 
 " Splits configuration 
