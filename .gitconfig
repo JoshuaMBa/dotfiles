@@ -1,34 +1,84 @@
+[user]
+	name = Joshua Baehring
+    email = josh.baehring@gmail.com
+
 [commit]
-    verbose = true
+    verbose = true                          # Show diff in commit message editor
 
 [fetch]
-    prune = true 
+    prune = true                            # Delete remote-tracking branches that no longer exist on remote
 
 [pull]
-    rebase = true 
+    rebase = true                           # Use rebase instead of merge when pulling
 
 [push]
-    default = current
+    default = current                       # Push the current branch to the remote with the same name
 
 [rebase]
-    autostash = true
+    autostash = true                        # Automatically stash changes before rebasing
 
 [rerere]
-    enabled = true
+    enabled = true                          # Enable reuse of recorded conflict resolutions
 
 [core]
-    excludesfile = ~/.config/git/ignore
+    excludesfile = ~/.config/git/ignore     # Global .gitignore file location
 
+
+
+#################################################################################################
+#                                                                                               #
+#                         ------- Git Aliases --------                                          #
+#                                                                                               #
+#     # Usage:                                                                                  #
+#     a <file>...              : add file(s) to staging area                                    #
+#     aa                       : add all tracked and untracked files to staging area            #
+#     alias                    : show all aliases                                               #
+#     b                        : list local branches                                            #
+#     ba                       : list all branches (local and remote)                           #
+#     br                       : list remote branches                                           #
+#     c <file>...              : commit file(s) to local repository                             #
+#     ca <file>...             : amends last commit with file(s)                                #
+#     can <file>...            : amends last commit with file(s) (no commit message change)     #
+#     cb                       : show current branch name                                       #
+#     changed                  : show changes since last update                                 #
+#     cm <string>              : commit file(s) with provided message                           #
+#     cmf                      : commit file(s) through fixup commits                           #
+#     cms                      : commit file(s) through squash commit                           #
+#     co <commit-hash>         : checkout commit (or branch)                                    #
+#     cp <commit-hash>...      : apply commit(s) from another branch                            #
+#     diff                     : word-diff with color                                           #
+#     lg                       : one-line decorated graph log                                   #
+#     lga                      : same as lg but includes all branches                           #
+#     lgme                     : git log authored by current user                               #
+#     p                        : push local repository changes to remote repository             #                                           #
+#     ra                       : abort current rebase                                           #
+#     rc                       : finish current rebase                                          #
+#     rewind <N>               : reset hard to N commits ago                                    #
+#     ri                       : initiate interactive rebase                                    #
+#     ru                       : fetch updates from all remotes                                 #
+#     rv <commit-hash>         : revert a commit (creates a new revert commit)                  #
+#     sh                       : show latest commit details                                     #
+#     set-upstream             : set upstream branch for tracking                               #
+#     st                       : show state of current staging area                             #
+#     sw <branch-name>         : switch to different branch                                     #
+#     trash                    : undo all uncommitted changes                                   #
+#     unstage                  : unstage all changes                                            #
+#     which                    : show branches containing current commit                        #
+#     who                      : shortlog of contributors                                       #
+#     whoami                   : print current Git user.name and user.email                     #
+#                                                                                               #
+#################################################################################################
 [alias]
     a = add
     aa = add --all 
+    alias = "!f() { git config --get-regexp alias | cut -c 7- | sed \"s/ /$(echo 2B | xxd -r -p)/\" | column -t -s $(echo 2B | xxd -r -p); }; f"    
     b = branch 
     ba = branch -a
     br = branch -r
     c = commit
     ca = commit --amend
     can = commit --amend --no-edit    
-    cb = !git rev-parse --abbrev-ref HEAD  
+    cb = !git rev-parse --abbrev-ref HEAD
     changed = diff ORIG_HEAD..
     cm = commit -m
     cmf = commit --fixup
@@ -39,18 +89,19 @@
     lg = log --oneline --graph --decorate    
     lga = log --oneline --graph --decorate --all 
     lgme = !git log --author=$(git config user.email)
+    p = push
     ra = rebase --abort
     rc = rebase --continue
     rewind = !sh -c 'git reset --hard HEAD~$1' -    
     ri = rebase -i 
     ru = remote update
     rv = revert
-    set-upstream = branch -u
     sh = show HEAD
+    set-upstream = branch -u
     st = status -b
     sw = switch
     trash = !git reset HEAD . && git checkout -- . && echo 'Undid all uncommitted changes'
     unstage = reset HEAD .
     which = branch --contains    
     who = shortlog -sn --no-merges
-    whoami = !git config --get user.name && git config --get user.email
+    whoami = !git config --get user.name && git config --get user.email 
