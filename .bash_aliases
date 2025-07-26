@@ -1,6 +1,6 @@
 # Directory navigation
-alias cdo="cd ~-"
-alias croot="cd ~"
+alias cdo="cd ~-" # Go to last directory
+alias cr="cd ~" 
 alias pud="pushd"
 alias pod="popd"
 alias ..="cd .."
@@ -17,6 +17,7 @@ alias lla="ls -laF"
 alias lal="ls -laF"
 alias cl="clear" 
 alias jb="cat ~/.jb_name_ascii_art"
+alias h="history"
 
 # File analysis
 alias diff="diff --color=auto"
@@ -46,14 +47,23 @@ alias typea="type -a"
 myip='curl -s ipinfo.io/ip'
 
 # Docker
-function dnames-fn {
-	for ID in `docker ps | awk '{print $1}' | grep -v 'CONTAINER'`
-	do
-    	docker inspect $ID | grep Name | head -1 | awk '{print $2}' | sed 's/,//g' | sed 's%/%%g' | sed 's/"//g'
-	done
+function dc-fn {
+        docker compose $*
 }
 
-function dip-fn {
+function dcr-fn {
+	docker compose run $@
+}
+
+function dex-fn {
+	docker exec -it $1 ${2:-bash}
+}
+
+function di-fn {
+	docker inspect $1
+}
+
+function dipls-fn {
     echo "IP addresses of all named running containers"
 
     for DOC in `dnames-fn`
@@ -65,28 +75,15 @@ function dip-fn {
     unset OUT
 }
 
-function dex-fn {
-	docker exec -it $1 ${2:-bash}
-}
-
-function di-fn {
-	docker inspect $1
-}
-
 function dl-fn {
 	docker logs -f $1
 }
 
-function drun-fn {
-	docker run -it $1 $2
-}
-
-function dcr-fn {
-	docker compose run $@
-}
-
-function dsr-fn {
-	docker stop $1;docker rm $1
+function dls-fn {
+	for ID in `docker ps | awk '{print $1}' | grep -v 'CONTAINER'`
+	do
+    	docker inspect $ID | grep Name | head -1 | awk '{print $2}' | sed 's/,//g' | sed 's%/%%g' | sed 's/"//g'
+	done
 }
 
 function drmc-fn {
@@ -98,38 +95,28 @@ function drmid-fn {
        [ ! -z "$imgs" ] && docker rmi "$imgs" || echo "no dangling images."
 }
 
-# in order to do things like dex $(dlab label) sh
-function dlab {
-       docker ps --filter="label=$1" --format="{{.ID}}"
+function drun-fn {
+	docker run -it $1 $2
 }
 
-function dc-fn {
-        docker compose $*
+function dsr-fn {
+	docker stop $1;docker rm $1
 }
 
-function d-aws-cli-fn {
-    docker run \
-           -e AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID \
-           -e AWS_DEFAULT_REGION=$AWS_DEFAULT_REGION \
-           -e AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY \
-           amazon/aws-cli:latest $1 $2 $3
-}
-
-alias daws=d-aws-cli-fn
 alias dc=dc-fn
 alias dcu="docker compose up -d"
 alias dcd="docker compose down"
 alias dcr=dcr-fn
-alias dex=dex-fn
-alias di=di-fn
-alias dim="docker images"
-alias dip=dip-fn
-alias dl=dl-fn
-alias dnames=dnames-fn
+alias dex=dex-fn  			#     dex <container>: execute a bash shell inside a running <container>
+alias di=di-fn                     	#     di <container> : docker inspect <container>
+alias dim="docker images" 		
+alias dipls=dipls-fn                    #     dipls          : list IP addresses of all running containers
+alias dl=dl-fn				#     dl <container> : docker logs -f <container>
+alias dls=dls-fn 			#     dls            : list all running containers
 alias dps="docker ps"
 alias dpsa="docker ps -a"
-alias drmc=drmc-fn
-alias drmid=drmid-fn
-alias drun=drun-fn
+alias drmc=drmc-fn			#     drmc           : remove all exited containers
+alias drmid=drmid-fn 			#     drmid          : remove all dangling images
+alias drun=drun-fn 			#     drun <image>   : execute a bash shell in a new container from <image>  
 alias dsp="docker system prune --all"
-alias dsr=dsr-fn
+alias dsr=dsr-fn  			#     dsr <container>: stop then remove <container>                        
