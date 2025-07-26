@@ -1,7 +1,3 @@
-[user]
-	name = Joshua Baehring
-    email = josh.baehring@gmail.com
-
 [commit]
     verbose = true                          # Show diff in commit message editor
 
@@ -50,7 +46,7 @@
 #     lg                       : one-line decorated graph log                                   #
 #     lga                      : same as lg but includes all branches                           #
 #     lgme                     : git log authored by current user                               #
-#     p                        : push local repository changes to remote repository             #                                           #
+#     p                        : push local repository changes to remote repository             #
 #     ra                       : abort current rebase                                           #
 #     rc                       : finish current rebase                                          #
 #     rewind <N>               : reset hard to N commits ago                                    #
