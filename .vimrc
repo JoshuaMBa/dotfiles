@@ -120,9 +120,9 @@ hi Search ctermbg=LightYellow
 hi Search ctermfg=red
 hi Visual ctermbg=White
 
-" Toggle directory panel with ctrl + m
-inoremap <C-M> <Esc>:NERDTreeToggle<cr>
-nnoremap <C-M> <Esc>:NERDTreeToggle<cr>
+" Toggle directory panel with ctrl + h
+inoremap <C-h> <Esc>:NERDTreeToggle<cr>
+nnoremap <C-h> <Esc>:NERDTreeToggle<cr>
 
 " Open fuzzy finder for files 
 inoremap <C-Q> :Files<CR>

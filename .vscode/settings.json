@@ -218,6 +218,24 @@
   "vim.visualModeKeyBindings": [
     {
       "before": [
+        "f",
+        "j"
+      ],
+      "commands": [
+        "<C-f>"
+      ]
+    },
+    {
+      "before": [
+        "f",
+        "k"
+      ],
+      "commands": [
+        "<C-b>"
+      ]
+    },
+    {
+      "before": [
         "<"
       ],
       "commands": [

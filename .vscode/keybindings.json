@@ -1,11 +1,11 @@
 [
   {
-    "key": "ctrl+shift+n",
+    "key": "ctrl+shift+a",
     "command": "workbench.action.terminal.focusNext",
     "when": "terminalFocus"
   },
   {
-    "key": "ctrl+shift+p",
+    "key": "ctrl+shift+b",
     "command": "workbench.action.terminal.focusPrevious",
     "when": "terminalFocus"
   },
@@ -75,12 +75,12 @@
     "when": "filesExplorerFocus && !inputFocus"
   },
   {
-    "key": "shift+n",
+    "key": "ctrl+shift+n",
     "command": "explorer.newFolder",
     "when": "explorerViewletFocus"
   },
   {
-    "key": "shift+n",
+    "key": "ctrl+shift+n",
     "command": "workbench.action.newWindow",
     "when": "!explorerViewletFocus"
   },
