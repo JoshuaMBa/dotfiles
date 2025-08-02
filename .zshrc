@@ -1,9 +1,9 @@
-if [ -f ~/.commonrc ]; then 
-        . ~/.commonrc
+if [ -f "$HOME/.commonrc" ]; then 
+    . "$HOME/.commonrc"
 fi
 
-if [ -f ~/.zsh_aliases ]; then
-        . ~/.zsh_aliases
+if [ -f "$HOME/.zsh_aliases" ]; then
+    . "$HOME/.zsh_aliases"
 fi
 
 setopt PROMPT_SUBST
@@ -28,3 +28,7 @@ precmd() {
 }
 
 PROMPT='%B%F{27}%n%f%b %~${vcs_info_msg_0_:+ ${vcs_info_msg_0_}} $ '
+
+if [ -f "$HOME/.zshrc.local" ]; then
+    . "$HOME/.zshrc.local"
+fi

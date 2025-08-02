@@ -1,9 +1,10 @@
-if [ -f ~/.commonrc ]; then 
-        . ~/.commonrc
+if [ -f "$HOME/.commonrc" ]; then 
+    . "$HOME/.commonrc"
 fi
 
-if [ -f ~/.bash_aliases ]; then
-        . ~/.bash_aliases
+# Load alias definitions
+if [ -f "$HOME/.bash_aliases" ]; then
+    . "$HOME/.bash_aliases"
 fi
 
 git_branch_info() {
@@ -22,3 +23,7 @@ git_branch_info() {
 
 PROMPT_COMMAND='GIT_BRANCH=$(git_branch_info)'
 PS1='\[\e[1;38;5;27m\]\u\[\e[0m\] \w${GIT_BRANCH:+ ${GIT_BRANCH}} \$ '
+
+if [ -f "$HOME/.bashrc.local" ]; then
+    . "$HOME/.bashrc.local"
+fi
