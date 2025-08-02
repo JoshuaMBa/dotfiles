@@ -1,16 +1,8 @@
 # setup.sh — Symlink dotfiles from ~/dotfiles to $HOME
 
-GREEN="\033[0;32m"
-YELLOW="\033[1;33m"
-BLUE="\033[0;34m"
-RED="\033[0;31m"
-MAGENTA="\033[0;35m"
-BOLD="\033[1m"
-NC="\033[0m" 
+source "$(dirname "$0")/common.sh"
 
-DOTFILES_DIR="$(pwd)"
-
-source "$DOTFILES_DIR/scripts/common.sh"
+DOTFILES_DIR="$(cd "$(dirname "$0")/.." && pwd)"
 
 link_file() {
     src="$1"
@@ -45,6 +37,7 @@ fi
 
 echo -e "${BLUE}🔗 Linking dotfiles from $DOTFILES_DIR to $HOME...${NC}"
 
+## Shell setup
 user_shell="$(detect_shell)"
 echo -e "${BOLD}Detected shell for setup:${NC} ${MAGENTA}$user_shell${NC}" 
 
@@ -62,28 +55,40 @@ else
     echo -e "${YELLOW}⚠️  Unsupported shell:${NC} $user_shell. Skipping shell config linking."
 fi
 
+## Git setup
 git_name="$(git config --global user.name)"
 git_email="$(git config --global user.email)"
 [ -f "$DOTFILES_DIR/.gitconfig" ] && link_file "$DOTFILES_DIR/.gitconfig" "$HOME/.gitconfig"
+
+GITCONFIG_LOCAL="$HOME/.gitconfig.local"
+
 if [ -n "$git_name" ] && [ -n "$git_email" ]; then
     echo -e "${GREEN}✔ Git user info already set:${NC}"
     echo -e "   Name : $git_name"
-    echo -e "   Email: $git_email" 
+    echo -e "   Email: $git_email"
 else
     echo -e "${YELLOW}⚠ Git user.name and/or user.email not set.${NC}"
-    printf "Enter your git user name: "
+    printf "Enter your Git user name: "
     read git_name
-    printf "Enter your Git email: " 
-    read git_email    
+    printf "Enter your Git email: "
+    read git_email
 fi
-git config --global user.name "$git_name"
-git config --global user.email "$git_email"
-echo -e "${GREEN}✔ Git user info saved to global config.${NC}"
 
+# Write the personal info to ~/.gitconfig.local (always overwrite for consistency)
+cat > "$GITCONFIG_LOCAL" <<EOF
+[user]
+    name = $git_name
+    email = $git_email
+EOF
+
+echo -e "${GREEN}✔ Git user info saved to${NC} $GITCONFIG_LOCAL"
+
+## vim and tmux setup
 [ -f "$DOTFILES_DIR/.vimrc" ] && link_file "$DOTFILES_DIR/.vimrc" "$HOME/.vimrc"
 [ -f "$DOTFILES_DIR/.tmux.conf" ] && link_file "$DOTFILES_DIR/.tmux.conf" "$HOME/.tmux.conf"
 [ -f "$DOTFILES_DIR/.jb_name_ascii_art" ] && link_file "$DOTFILES_DIR/.jb_name_ascii_art" "$HOME/.jb_name_ascii_art"
 
+## VSCode Setup
 if [ -d "$DOTFILES_DIR/.vscode" ]; then
     case "$(uname -s)" in
         Linux)

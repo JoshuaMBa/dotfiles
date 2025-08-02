@@ -19,6 +19,8 @@
 [core]
     excludesfile = ~/.config/git/ignore     # Global .gitignore file location
 
+[include]
+    path = ~/.gitconfig.local
 
 
 #################################################################################################
