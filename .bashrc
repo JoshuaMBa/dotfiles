@@ -1,3 +1,7 @@
+if [ -f ~/.commonrc ]; then 
+        . ~/.commonrc
+fi
+
 if [ -f ~/.bash_aliases ]; then
         . ~/.bash_aliases
 fi

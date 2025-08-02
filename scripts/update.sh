@@ -6,7 +6,7 @@ source "$(dirname "$0")/common.sh"
 echo "🔄 Reloading configs where possible..."
 
 user_shell="$(detect_shell)"
-echo "Detected shell for setup: $user_shell" 
+echo "Detected shell for update: $user_shell" 
 
 if [ "$user_shell" = "bash" ]; then
     source "$HOME/.bashrc"

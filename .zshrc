@@ -1,3 +1,7 @@
+if [ -f ~/.commonrc ]; then 
+        . ~/.commonrc
+fi
+
 if [ -f ~/.zsh_aliases ]; then
         . ~/.zsh_aliases
 fi

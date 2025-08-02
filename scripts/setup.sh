@@ -31,10 +31,12 @@ if [ "$user_shell" = "bash" ]; then
     [ -f "$DOTFILES_DIR/.bashrc" ] && link_file "$DOTFILES_DIR/.bashrc" "$HOME/.bashrc"
     [ -f "$DOTFILES_DIR/.bash_aliases" ] && link_file "$DOTFILES_DIR/.bash_aliases" "$HOME/.bash_aliases"
     [ -f "$DOTFILES_DIR/.common_aliases" ] && link_file "$DOTFILES_DIR/.common_aliases" "$HOME/.common_aliases"
+    [ -f "$DOTFILES_DIR/.commonrc" ] && link_file "$DOTFILES_DIR/.commonrc" "$HOME/.commonrc"
 elif [ "$user_shell" = "zsh" ]; then
     [ -f "$DOTFILES_DIR/.zshrc" ] && link_file "$DOTFILES_DIR/.zshrc" "$HOME/.zshrc"
     [ -f "$DOTFILES_DIR/.zsh_aliases" ] && link_file "$DOTFILES_DIR/.zsh_aliases" "$HOME/.zsh_aliases"
     [ -f "$DOTFILES_DIR/.common_aliases" ] && link_file "$DOTFILES_DIR/.common_aliases" "$HOME/.common_aliases"
+    [ -f "$DOTFILES_DIR/.commonrc" ] && link_file "$DOTFILES_DIR/.commonrc" "$HOME/.commonrc"
 else
     echo "⚠️  Unsupported shell: $user_shell. Skipping shell config linking."
 fi
