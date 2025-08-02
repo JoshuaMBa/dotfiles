@@ -1,19 +1,21 @@
 #!/usr/bin/env bash
 # update.sh — Reload dotfiles without relinking
 
+source "$(dirname "$0")/common.sh"
+
 echo "🔄 Reloading configs where possible..."
 
-if [ -n "$BASH_VERSION" ] && [ -f "$HOME/.bashrc" ]; then
+user_shell="$(detect_shell)"
+echo "Detected shell for setup: $user_shell" 
+
+if [ "$user_shell" = "bash" ]; then
     source "$HOME/.bashrc"
     echo "Reloaded ~/.bashrc"
-elif [ -n "$ZSH_VERSION" ] && [ -f "$HOME/.zshrc" ]; then
+elif [ "$user_shell" = "zsh" ]; then
     source "$HOME/.zshrc"
     echo "Reloaded ~/.zshrc"
-fi
-
-if [ -f "$HOME/.bash_aliases" ]; then
-    source "$HOME/.bash_aliases"
-    echo "Reloaded ~/.bash_aliases"
+else
+    echo "⚠️  Unsupported shell: $user_shell. Skipping shell config reloading."
 fi
 
 if command -v tmux >/dev/null && [ -f "$HOME/.tmux.conf" ]; then

@@ -83,6 +83,9 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
+" Bash highlighting for common_aliases file
+au BufNewFile,BufRead .common_aliases set filetype=bash
+
 " Plugin setup
 call plug#begin()
 
