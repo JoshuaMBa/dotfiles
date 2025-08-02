@@ -24,7 +24,7 @@ link_file() {
 
 if [[ "$(uname)" == "Darwin" ]]; then  
     echo "🍏 Running macOS defaults setup"    
-    if [[ -f $DOTFILES_DIR/com.apple.Terminal.plist ]]; then
+    if [[ -f $DOTFILES_DIR/.com.apple.Terminal.plist ]]; then
         echo "📦 Importing Terminal.app preferences...(restart Terminal to view changes)"
         defaults import com.apple.Terminal $DOTFILES_DIR/.com.apple.Terminal.plist 
     else
