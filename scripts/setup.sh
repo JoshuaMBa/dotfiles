@@ -3,7 +3,7 @@
 
 DOTFILES_DIR="$(pwd)"
 
-source "$(dirname "$0")/common.sh"
+source "$DOTFILES_DIR/scripts/common.sh"
 
 link_file() {
     src="$1"
@@ -21,6 +21,19 @@ link_file() {
     ln -sf "$src" "$dest"
     echo "Linked $dest → $src"
 }
+
+if [[ "$(uname)" == "Darwin" ]]; then  
+    echo "🍏 Running macOS defaults setup"    
+    if [[ -f $DOTFILES_DIR/com.apple.Terminal.plist ]]; then
+        echo "📦 Importing Terminal.app preferences...(restart Terminal to view changes)"
+        defaults import com.apple.Terminal $DOTFILES_DIR/.com.apple.Terminal.plist 
+    else
+        echo "⚠️  No Terminal.app preferences found in ~/dotfiles."
+    fi
+
+    # Allow repeated keystrokes (used for VSCodeVim)
+    defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false 
+fi
 
 echo "🔗 Linking dotfiles from $DOTFILES_DIR to $HOME..."
 

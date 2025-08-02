@@ -1,4 +1,3 @@
-// Allow repeated input: defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false
 {
   "git.confirmSync": false,
   "workbench.colorTheme": "Visual Studio 2017 Dark - C++",
