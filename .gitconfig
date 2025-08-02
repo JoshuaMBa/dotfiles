@@ -85,7 +85,8 @@
     lg = log --oneline --graph --decorate    
     lga = log --oneline --graph --decorate --all 
     lgme = !git log --author=$(git config user.email)
-    p = push
+    ph = push
+    pl = pull
     ra = rebase --abort
     rc = rebase --continue
     rewind = !sh -c 'git reset --hard HEAD~$1' -    
