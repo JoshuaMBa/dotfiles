@@ -1,4 +1,3 @@
-#!/usr/bin/env bash
 # update.sh — Reload dotfiles without relinking
 
 source "$(dirname "$0")/common.sh"
