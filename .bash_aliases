@@ -47,23 +47,23 @@ alias typea="type -a"
 myip='curl -s ipinfo.io/ip'
 
 # Docker
-function dc-fn {
+function dc_fn {
         docker compose $*
 }
 
-function dcr-fn {
+function dcr_fn {
 	docker compose run $@
 }
 
-function dex-fn {
+function dex_fn {
 	docker exec -it $1 ${2:-bash}
 }
 
-function di-fn {
+function di_fn {
 	docker inspect $1
 }
 
-function dipls-fn {
+function dipls_fn {
     echo "IP addresses of all named running containers"
 
     for DOC in `dnames-fn`
@@ -75,48 +75,48 @@ function dipls-fn {
     unset OUT
 }
 
-function dl-fn {
+function dl_fn {
 	docker logs -f $1
 }
 
-function dls-fn {
+function dls_fn {
 	for ID in `docker ps | awk '{print $1}' | grep -v 'CONTAINER'`
 	do
     	docker inspect $ID | grep Name | head -1 | awk '{print $2}' | sed 's/,//g' | sed 's%/%%g' | sed 's/"//g'
 	done
 }
 
-function drmc-fn {
+function drmc_fn {
        docker rm $(docker ps --all -q -f status=exited)
 }
 
-function drmid-fn {
+function drmid_fn {
        imgs=$(docker images -q -f dangling=true)
        [ ! -z "$imgs" ] && docker rmi "$imgs" || echo "no dangling images."
 }
 
-function drun-fn {
+function drun_fn {
 	docker run -it $1 $2
 }
 
-function dsr-fn {
+function dsr_fn {
 	docker stop $1;docker rm $1
 }
 
-alias dc=dc-fn
+alias dc=dc_fn
 alias dcu="docker compose up -d"
 alias dcd="docker compose down"
-alias dcr=dcr-fn
-alias dex=dex-fn  			#     dex <container>: execute a bash shell inside a running <container>
-alias di=di-fn                     	#     di <container> : docker inspect <container>
+alias dcr=dcr_fn
+alias dex=dex_fn  			#     dex <container>: execute a bash shell inside a running <container>
+alias di=di_fn                     	#     di <container> : docker inspect <container>
 alias dim="docker images" 		
-alias dipls=dipls-fn                    #     dipls          : list IP addresses of all running containers
-alias dl=dl-fn				#     dl <container> : docker logs -f <container>
-alias dls=dls-fn 			#     dls            : list all running containers
+alias dipls=dipls_fn                    #     dipls          : list IP addresses of all running containers
+alias dl=dl_fn				#     dl <container> : docker logs -f <container>
+alias dls=dls_fn 			#     dls            : list all running containers
 alias dps="docker ps"
 alias dpsa="docker ps -a"
-alias drmc=drmc-fn			#     drmc           : remove all exited containers
-alias drmid=drmid-fn 			#     drmid          : remove all dangling images
-alias drun=drun-fn 			#     drun <image>   : execute a bash shell in a new container from <image>  
+alias drmc=drmc_fn			#     drmc           : remove all exited containers
+alias drmid=drmid_fn 			#     drmid          : remove all dangling images
+alias drun=drun_fn 			#     drun <image>   : execute a bash shell in a new container from <image>  
 alias dsp="docker system prune --all"
-alias dsr=dsr-fn  			#     dsr <container>: stop then remove <container>                        
+alias dsr=dsr_fn  			#     dsr <container>: stop then remove <container>                        

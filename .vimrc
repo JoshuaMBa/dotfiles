@@ -107,12 +107,9 @@ Plug 'preservim/nerdtree'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
-" Color Theme
-Plug 'cesardeazevedo/Fx-ColorScheme'
-
 call plug#end()
 
-colorscheme fx
+colorscheme elflord 
 
 " Color Display
 set background=dark

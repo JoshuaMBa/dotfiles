@@ -1,5 +1,5 @@
-#!/bin/bash
-# install.sh — Symlink dotfiles from ~/env to $HOME
+#!/usr/bin/env bash
+# setup.sh — Symlink dotfiles from ~/dotfiles to $HOME
 
 DOTFILES_DIR="$(pwd)"
 
@@ -23,8 +23,7 @@ link_file() {
 echo "🔗 Linking dotfiles from $DOTFILES_DIR to $HOME..."
 
 if [ -f "$DOTFILES_DIR/.bashrc" ]; then
-    link_file "$DOTFILES_DIR/.bashrc" "$HOME/.bashrc"
-    source .bashrc
+    link_file "$DOTFILES_DIR/.bashrc" "$HOME/.bashrc" 
 fi
 
 if [ "$(basename "$SHELL")" = "zsh" ]; then
@@ -58,6 +57,10 @@ if [ -d "$DOTFILES_DIR/.vscode" ]; then
         link_file "$DOTFILES_DIR/.vscode/settings.json" "$VSCODE_USER_DIR/settings.json"
         link_file "$DOTFILES_DIR/.vscode/keybindings.json" "$VSCODE_USER_DIR/keybindings.json"
     fi
+fi
+
+if [ -f "$DOTFILES_DIR/update.sh" ]; then 
+    source "$DOTFILES_DIR/update.sh"
 fi
 
 echo "✅ Done. Your dotfiles are now active."
