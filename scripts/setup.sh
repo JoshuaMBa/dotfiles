@@ -56,8 +56,8 @@ else
 fi
 
 ## Git setup
-git_name="$(git config --global user.name)"
-git_email="$(git config --global user.email)"
+git_name="$(git config user.name)"
+git_email="$(git config user.email)"
 [ -f "$DOTFILES_DIR/.gitconfig" ] && link_file "$DOTFILES_DIR/.gitconfig" "$HOME/.gitconfig"
 
 GITCONFIG_LOCAL="$HOME/.gitconfig.local"
@@ -74,14 +74,19 @@ else
     read git_email
 fi
 
-# Write the personal info to ~/.gitconfig.local (always overwrite for consistency)
-cat > "$GITCONFIG_LOCAL" <<EOF
+if ! grep -q "^\[user\]" "$GITCONFIG_LOCAL" 2>/dev/null; then
+    cat >> "$GITCONFIG_LOCAL" <<EOF
+
 [user]
     name = $git_name
     email = $git_email
 EOF
+    echo -e "${GREEN}✔ Git user info saved to${NC} $GITCONFIG_LOCAL"
+else
+    echo -e "${BLUE}ℹ [user] section already exists in${NC} $GITCONFIG_LOCAL — skipping."
+fi
 
-echo -e "${GREEN}✔ Git user info saved to${NC} $GITCONFIG_LOCAL"
+
 
 ## vim and tmux setup
 [ -f "$DOTFILES_DIR/.vimrc" ] && link_file "$DOTFILES_DIR/.vimrc" "$HOME/.vimrc"
