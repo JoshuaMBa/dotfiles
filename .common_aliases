@@ -27,7 +27,6 @@ alias grepr="grep -n -R --color=auto"
 # File creation and deletion
 alias vi="vim"
 alias vs="code"
-alias vs="code"
 alias t="touch"
 alias rmr="rm -r"
 alias rmf="rm -f"
