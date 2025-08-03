@@ -25,7 +25,7 @@ else
     echo -e "${YELLOW}⚠ Unsupported shell:${NC} $user_shell — skipping shell config reloading."
 fi
 
-if command -v tmux >/dev/null && [ -f "$HOME/.tmux.conf" ]; then
+if { command -v tmux >/dev/null; } && [ -f "$HOME/.tmux.conf" ]; then
     tmux source-file "$HOME/.tmux.conf" 2>/dev/null && \
     echo -e "${GREEN}✔ Reloaded${NC} ~/.tmux.conf"
 fi

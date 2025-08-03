@@ -48,7 +48,8 @@
 #     lg                       : one-line decorated graph log                                   #
 #     lga                      : same as lg but includes all branches                           #
 #     lgme                     : git log authored by current user                               #
-#     p                        : push local repository changes to remote repository             #
+#     ph                       : push local repository changes to remote repository             #
+#     pl                       : pull changes from remote repository to local repository        #
 #     ra                       : abort current rebase                                           #
 #     rc                       : finish current rebase                                          #
 #     rewind <N>               : reset hard to N commits ago                                    #
