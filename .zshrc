@@ -18,7 +18,7 @@ precmd() {
     if [[ -n ${vcs_info_msg_0_} ]]; then
         if [[ -d .git/rebase-merge || -d .git/rebase-apply || -f .git/MERGE_HEAD ]]; then
             vcs_info_msg_0_="%F{red}${vcs_info_msg_0_}%f"
-        elif ! git diff-index --quiet HEAD -- 2>/dev/null; then
+        elif [[ -n "$(git status --porcelain 2>/dev/null)" ]]; then
             branch_with_star="${vcs_info_msg_0_/%]/*]}"
             vcs_info_msg_0_="%F{yellow}${branch_with_star}%f"
         else
