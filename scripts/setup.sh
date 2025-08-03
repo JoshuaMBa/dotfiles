@@ -112,6 +112,7 @@ if [ -d "$DOTFILES_DIR/.vscode" ]; then
     if [ -n "$VSCODE_USER_DIR" ]; then
         [ -f "$DOTFILES_DIR/.vscode/settings.json" ] && link_file "$DOTFILES_DIR/.vscode/settings.json" "$VSCODE_USER_DIR/settings.json"
         [ -f "$DOTFILES_DIR/.vscode/keybindings.json" ] && link_file "$DOTFILES_DIR/.vscode/keybindings.json" "$VSCODE_USER_DIR/keybindings.json"
+        [ -f "$DOTFILES_DIR/.vscode/extensions.json" ] && link_file "$DOTFILES_DIR/.vscode/extensions.json" "$VSCODE_USER_DIR/extensions.json"
     else 
         echo -e "${YELLOW}⚠️  $VSCODE_USER_DIR not found, skipping VSCode configs${NC}"
     fi

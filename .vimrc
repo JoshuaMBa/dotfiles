@@ -64,19 +64,6 @@ noremap L $
 " Escape with jj
 inoremap jj <Esc>
 
-" use <tab> to trigger completion and navigate to the next complete item
-function! CheckBackspace() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-if exists('*coc#rpc#ready') && coc#rpc#ready()
-  inoremap <silent><expr> <Tab>
-        \ coc#pum#visible() ? coc#pum#next(1) :
-        \ CheckBackspace() ? "\<Tab>" :
-        \ coc#refresh()
-endif
-
 " Splits configuration 
 set splitbelow 
 set splitright
@@ -114,6 +101,17 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
 call plug#end()
+
+" use <tab> to trigger completion and navigate to the next complete item
+function! CheckBackspace() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+inoremap <silent><expr> <Tab> (exists('*coc#pum#visible') && coc#pum#visible()) ?
+      \ coc#pum#next(1) :
+      \ (CheckBackspace() ? "\<Tab>" :
+      \ (exists('*coc#refresh') ? coc#refresh() : "\<Tab>"))
 
 colorscheme elflord 
 
