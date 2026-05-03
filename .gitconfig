@@ -53,6 +53,7 @@
 #     ra                       : abort current rebase                                           #
 #     rc                       : finish current rebase                                          #
 #     rewind <N>               : reset hard to N commits ago                                    #
+#     re <N>                   : same as rewind                                                 #
 #     ri                       : initiate interactive rebase                                    #
 #     ru                       : fetch updates from all remotes                                 #
 #     rv <commit-hash>         : revert a commit (creates a new revert commit)                  #
@@ -61,7 +62,11 @@
 #     st                       : show state of current staging area                             #
 #     sw <branch-name>         : switch to different branch                                     #
 #     trash                    : undo all uncommitted changes                                   #
+#     tr                       : same as trash                                                  #
+#     uncommit <N>             : reset soft to N commits ago                                    #
+#     unc <N>                  : same as uncommit                                               #
 #     unstage                  : unstage all changes                                            #
+#     uns                      : same as unstage                                                #
 #     which                    : show branches containing current commit                        #
 #     who                      : shortlog of contributors                                       #
 #     whoami                   : print current Git user.name and user.email                     #
@@ -93,6 +98,7 @@
     ra = rebase --abort
     rc = rebase --continue
     rewind = !sh -c 'git reset --hard HEAD~$1' -    
+    re = rewind
     ri = rebase -i 
     ru = remote update
     rv = revert
@@ -101,7 +107,11 @@
     st = status -b
     sw = switch
     trash = !git reset HEAD . && git checkout -- . && echo 'Undid all uncommitted changes'
+    tr = trash
+    uncommit = !sh -c 'git reset --soft HEAD~$1' -
+    unc = uncommit
     unstage = reset HEAD .
+    uns = unstage
     which = branch --contains    
     who = shortlog -sn --no-merges
     whoami = !git config --get user.name && git config --get user.email 
